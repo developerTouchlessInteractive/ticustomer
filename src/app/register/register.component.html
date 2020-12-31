@@ -1,0 +1,31 @@
+
+<div>
+    <app-navbar></app-navbar>
+</div>
+<app-alert #alert style="margin:15px;">
+</app-alert>
+
+<mat-card class="message">
+    <mat-card-title>
+        <h4>
+            Start the Flow
+        </h4>
+    </mat-card-title>
+    
+    <mat-card>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Enter 4 digit Code" aria-label="Recipient's username"
+                aria-describedby="basic-addon2" [(ngModel)]="code">
+        </div>
+    </mat-card>
+    <mat-card>
+        <div class="input-group-append">
+            <!-- <span class="input-group-text" id="basic-addon2" (click)="register()">send</span> -->
+            <span class="input-group-text" id="basic-addon2" (click)="register()">send</span>
+
+        </div>
+    </mat-card>
+</mat-card>
+
+
+

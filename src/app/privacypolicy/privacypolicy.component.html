@@ -1,0 +1,23 @@
+<app-navbar></app-navbar>
+<p>
+  <app-flowprogress></app-flowprogress>
+</p>
+<p>
+    <mat-toolbar class="taskName">
+      <span> Privacy Policy</span>
+    </mat-toolbar>
+  </p>
+    <mat-card class="dashboard-card-content">
+      <div style="width: 80%; overflow: auto; height: 300px; margin-left: 10%;margin-right: 10%; padding: 10px;" *ngIf="fetchedHtml" [innerHTML]="fetchedHtml._body "></div>
+
+      <!-- <div *ngIf="fetchedHtml" [innerHTML]="fetchedHtml._body "></div> -->
+      <!-- <ngx-doc-viewer [url]="docViewUrl" viewer="google" style="width:100%;height:50vh;"></ngx-doc-viewer> -->
+
+      <mat-card class="actions">
+        <button class = "button" mat-raised-button (click)="updateConsent(true)">Accept</button>
+        <button class = "button" mat-raised-button (click)="updateConsent(false)">Decline</button>
+      </mat-card>
+      <mat-card *ngIf="consentResult">
+        <p>{{consentResult}}</p>
+      </mat-card>
+    </mat-card>

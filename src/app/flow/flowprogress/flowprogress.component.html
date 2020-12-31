@@ -1,0 +1,21 @@
+<div style="padding: 20px;">
+  <div *ngIf="shouldShowTaskBar">
+    <div style="margin:5px" class="text-primary">{{'Task Progress'|lowercase}}</div>
+    <div class="progress" style="height: 15px;margin:10px">
+      <div [ngStyle]="{'width': taskBar|percent, 'background-color':'green', 'padding': 20}" class="progress-bar"
+        role="progressbar">
+        {{taskBar?(taskBar*100).toPrecision(2)+'%':'0%'}}
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="shouldShowStageBar">
+    <div style="margin:5px" class="text-info">{{'Stage Progress'|lowercase}}</div>
+    <div class="progress" style="margin:10px">
+      <div [ngStyle]="{'width': stageBar|percent, 'margin':20, 'background-color':'teal'}" class="progress-bar"
+        role="progressbar">
+        {{stageBar?(stageBar*100).toPrecision(2)+'%':'0%'}}
+      </div>
+    </div>
+  </div>
+</div>
