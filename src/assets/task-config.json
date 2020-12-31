@@ -1,0 +1,16 @@
+{
+    "map": [
+        {
+            "type": "DOCUMENT_WITH_SIGNATURE",
+            "controller": "DocumentComponent"
+        },
+        {
+            "type": "TERMS_AND_CONDITIONS",
+            "controller": "TermsComponent"
+        },
+        {
+            "type": "PRIVACY_POLICY",
+            "controller": "PrivacypolicyComponent"
+        }
+    ]
+}

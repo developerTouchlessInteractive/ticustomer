@@ -1,0 +1,30 @@
+<div class="col-6">
+    <div *ngIf="interaction">
+        <h2 class="text-info" style="margin-top: 15px;align-content: center;align-self: center;">Interaction
+        </h2>
+        <div *ngFor="let data of interaction">
+            <div class="card bg-info text-white" style="margin: 10px;">
+                <div class="card-body">
+                    <p class="card-text" *ngIf="data.data">{{data.data}}</p>
+                </div>
+            </div>
+            <div>
+                <p class="card-text">{{getMomentTime(data.time)}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="write message here for customer..."
+        aria-label="Recipient's username" aria-describedby="basic-addon2" [(ngModel)]="message">
+    <div class="input-group-append">
+        <span class="input-group-text" id="basic-addon2" (click)="sendMessage()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right"
+                viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M6 12.796L11.481 8 6 3.204v9.592zm.659.753l5.48-4.796a1 1 0 0 0 0-1.506L6.66 2.451C6.011 1.885 5 2.345 5 3.204v9.592a1 1 0 0 0 1.659.753z" />
+            </svg>
+        </span>
+    </div>
+</div>
+<button type="button" class="btn btn-outline-dark" (click)="goHome()">close</button>

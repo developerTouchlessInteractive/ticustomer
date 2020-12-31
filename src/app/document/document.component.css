@@ -1,0 +1,30 @@
+.sign {
+    background-color: lightseagreen;
+    color: white;
+    font-size: large;
+    padding: 10;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+  }
+
+  .actions {
+      display: flex;
+      flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+  }
+  .button {
+    margin:10px;
+    background-color: lightseagreen;
+    color: white;
+    border-radius: 10px;
+  }
+  .taskName {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: darkcyan;
+    font-size: x-large;
+    padding: 10;
+}

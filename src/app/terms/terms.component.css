@@ -1,0 +1,38 @@
+.dashboard-card-content {
+    height: 100%;
+  }
+  
+  .dashboard-card {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+    font-size: large;
+    padding: 10;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 15px;
+  }
+  .button {
+    background-color: lightseagreen;
+    color: white;
+    border-radius: 10px;
+  }
+  .taskName {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: darkcyan;
+    font-size: x-large;
+    padding: 10;
+}
+  

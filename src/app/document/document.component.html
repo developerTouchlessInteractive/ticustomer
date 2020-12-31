@@ -1,0 +1,17 @@
+<app-navbar></app-navbar>
+<p>
+    <app-flowprogress></app-flowprogress>
+</p>
+<mat-card-title class="taskName"> Document </mat-card-title>
+<mat-card>
+    <ngx-doc-viewer [url]="docViewUrl" viewer="google" style="width:100%;height:50vh;"></ngx-doc-viewer>
+    <mat-card class="actions">
+        <button class="button" (click)="processSignButton()">{{signButtonLabel}}</button>
+    </mat-card>
+    <app-signpad class="sign" *ngIf="shouldShowSignPad" (sendSignData)="processSignature($event)"></app-signpad>
+    <mat-card class="actions">
+        <img [src]="signatureB64data" *ngIf="signatureB64data" />
+        <button class="button" *ngIf="signatureB64data" (click)="complete()"> Submit </button>
+    </mat-card>
+
+</mat-card>
