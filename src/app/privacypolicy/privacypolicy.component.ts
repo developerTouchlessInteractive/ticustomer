@@ -1,12 +1,12 @@
 import { AfterViewInit } from '@angular/core';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { map } from 'rxjs/operators';
 import { FlowService } from '../flow/flow.service';
 import { InteractionService } from '../flow/interaction.service';
 import { TaskOutput, UserProvidedAction } from '../flowdata.interface';
 import { TouchlessTaskComponent } from '../touchlesstask/touchlesstask.component';
+import { privacyhtml, privacyhtml_2 } from './privacy.constant';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-privacypolicy',
@@ -18,11 +18,10 @@ export class PrivacypolicyComponent extends TouchlessTaskComponent implements Af
   pageData
   fetchedHtml: any;
   consentResult
-  url = "https://www.sofi.com/login/policy/esign"
+  privacy_url = "http://localhost:3000/tmsprivacy/policy" //this endpoint is of touchless Server
   docViewUrl: string;
-  url2
 
-  constructor(flowServ: FlowService, interactServ: InteractionService, public http: Http, router: Router) {
+  constructor(flowServ: FlowService, interactServ: InteractionService, public http: HttpClient, router: Router) {
     super(flowServ, interactServ, router);
   }
 
@@ -31,12 +30,16 @@ export class PrivacypolicyComponent extends TouchlessTaskComponent implements Af
     super.ngAfterViewInit()
     const taskConfig = await this.getTaskConfiguration()
     this.docViewUrl = taskConfig.resource
-    this.url2 = "https://cors-anywhere.herokuapp.com/".concat(taskConfig.resource)
-    this.http.get(this.url2).pipe(
-      map((response: Response) => {
-        this.fetchedHtml = response;
-      })
-    ).subscribe()
+    this.http
+      .get(this.privacy_url, { responseType: 'text' })
+      .subscribe(
+        data => console.log('success', this.fetchedHtml = data),
+        error => console.log('oops', this.handlePrivacyFetchError())
+      )
+  }
+
+  handlePrivacyFetchError() {
+    this.fetchedHtml = privacyhtml + privacyhtml_2
   }
 
   async updateConsent(bool) {

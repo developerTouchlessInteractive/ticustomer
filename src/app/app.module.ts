@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlowModule } from './flow/flow.module';
 import { NavbarComponent } from './navbar/navbar.component';
+import { HttpClientModule } from '@angular/common/http';
 
 export let AppInjector: Injector;
 @NgModule({
@@ -15,7 +16,7 @@ export let AppInjector: Injector;
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     FlowModule
   ],
