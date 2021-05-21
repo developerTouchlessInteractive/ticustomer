@@ -1,12 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, AfterViewInit } from '@angular/core';
-import { Http, Response } from '@angular/http';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { FlowService } from '../flow/flow.service';
 import { InteractionService } from '../flow/interaction.service';
 import { TaskOutput, UserProvidedAction } from '../flowdata.interface';
 import { TouchlessTaskComponent } from '../touchlesstask/touchlesstask.component';
+import { termshtml, termshtml_2 } from './terms.constant';
 
 @Component({
   selector: 'app-terms',
@@ -16,12 +15,12 @@ import { TouchlessTaskComponent } from '../touchlesstask/touchlesstask.component
 export class TermsComponent extends TouchlessTaskComponent implements AfterViewInit {
   hasAccepted: boolean = false
   pageData
-  fetchedHtml
+  fetchedHtml = undefined
   consentResult
   docViewUrl
   url2
 
-  constructor(flowServ: FlowService, interactServ: InteractionService, public http: Http, router: Router) {
+  constructor(flowServ: FlowService, interactServ: InteractionService, public http: HttpClient, router: Router) {
     super(flowServ, interactServ, router);
   }
 
@@ -29,14 +28,19 @@ export class TermsComponent extends TouchlessTaskComponent implements AfterViewI
   async ngAfterViewInit() {
     super.ngAfterViewInit()
     const taskConfig = await this.getTaskConfiguration()
-    this.url2 = "https://cors-anywhere.herokuapp.com/".concat(taskConfig.resource)
-    // this.docViewUrl = taskConfig.resource
-this.docViewUrl = 'src/assets/termsandconditions.pdf'    
-    this.http.get(this.url2).pipe(
-      map((response) => {
-        this.fetchedHtml = response
-      })
-    ).subscribe()
+    this.url2 = "http://localhost:3000/tmsprivacy/terms" //this endpoint is of touchless Server
+    this.docViewUrl = 'src/assets/termsandconditions.pdf'
+
+    this.http
+      .get(this.url2, { responseType: 'text' })
+      .subscribe(
+        data => console.log('success', this.fetchedHtml = data),
+        error => console.log('oops', this.handleTermsFetchError())
+      );
+  }
+
+  handleTermsFetchError() {
+    this.fetchedHtml = termshtml + termshtml_2
   }
 
   async updateConsent(bool) {
